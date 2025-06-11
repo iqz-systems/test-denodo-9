@@ -1,0 +1,13 @@
+﻿CREATE OR REPLACE VIEW bv_control_table FOLDER = '/1 - dataconnection/poc' AS  
+    SELECT 1 AS id,
+           'dev-denodo-9.iqzsystems.io' AS d_environment,
+           'dbo.' AS d_schema,
+           'DIMCUSTOMER' AS d_table
+    FROM dual()
+    SQL UNION
+    SELECT 3 AS id,
+           'preprod-denodo-9.iqzsystems.io' AS d_environment,
+           'db2user.' AS d_schema,
+           'DIMCUSTOMER' AS d_table
+    FROM dual() CONTEXT ('formatted' = 'yes');
+

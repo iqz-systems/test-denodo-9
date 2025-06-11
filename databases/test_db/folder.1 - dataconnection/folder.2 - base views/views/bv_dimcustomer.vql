@@ -1,0 +1,117 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_DimCustomer"
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_retail_dw
+    CATALOGNAME='${databases.test_db.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_dimcustomer.CATALOGNAME}' 
+    SCHEMANAME='${databases.test_db.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_dimcustomer.SCHEMANAME}' 
+    RELATIONNAME='DimCustomer' 
+    OUTPUTSCHEMA (
+        "CustomerKey" = 'CustomerKey' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        "GeographyKey" = 'GeographyKey' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        "CustomerLabel" = 'CustomerLabel' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE,
+        "Title" = 'Title' :'java.lang.String' (OPT) (sourcetypesize='8', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "FirstName" = 'FirstName' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "MiddleName" = 'MiddleName' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "LastName" = 'LastName' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "NameStyle" = 'NameStyle' :'java.lang.Boolean' (OPT) (sourcetypesize='1', sourcetypeid='-7', sourcetypename='bit')  SORTABLE,
+        "BirthDate" = 'BirthDate' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        "MaritalStatus" = 'MaritalStatus' :'java.lang.String' (OPT) (sourcetypesize='1', sourcetypeid='-15', sourcetypename='nchar')  SORTABLE,
+        "Suffix" = 'Suffix' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "Gender" = 'Gender' :'java.lang.String' (OPT) (sourcetypesize='1', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "EmailAddress" = 'EmailAddress' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "YearlyIncome" = 'YearlyIncome' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        "TotalChildren" = 'TotalChildren' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE,
+        "NumberChildrenAtHome" = 'NumberChildrenAtHome' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE,
+        "Education" = 'Education' :'java.lang.String' (OPT) (sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "Occupation" = 'Occupation' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "HouseOwnerFlag" = 'HouseOwnerFlag' :'java.lang.String' (OPT) (sourcetypesize='1', sourcetypeid='-15', sourcetypename='nchar')  SORTABLE,
+        "NumberCarsOwned" = 'NumberCarsOwned' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE,
+        "AddressLine1" = 'AddressLine1' :'java.lang.String' (OPT) (sourcetypesize='120', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "AddressLine2" = 'AddressLine2' :'java.lang.String' (OPT) (sourcetypesize='120', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "Phone" = 'Phone' :'java.lang.String' (OPT) (sourcetypesize='20', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "DateFirstPurchase" = 'DateFirstPurchase' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        "CustomerType" = 'CustomerType' :'java.lang.String' (OPT) (sourcetypesize='15', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "CompanyName" = 'CompanyName' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        "ETLLoadID" = 'ETLLoadID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        "LoadDate" = 'LoadDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE,
+        "UpdateDate" = 'UpdateDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE
+    )
+    CONSTRAINT 'PK_DimCustomer_CustomerKey' PRIMARY KEY ( 'CustomerKey' )
+    CONSTRAINT 'FK_DimCustomer_DimGeography' FOREIGN KEY ( 'GeographyKey' ) 
+    REFERENCES 'IQZPlusRetailDW'.'dbo'.'DimGeography'( 'GeographyKey' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    INDEX 'PK_DimCustomer_CustomerKey' CLUSTER UNIQUE PRIMARY ( 'CustomerKey' )
+    INDEX 'IX_DimCustomer_CustomerLabel' OTHER UNIQUE ( 'CustomerLabel' );
+
+CREATE OR REPLACE TABLE "bv_DimCustomer" I18N us_est (
+        "CustomerKey":int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "GeographyKey":int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustomerLabel":text (notnull, sourcetypeid = '-9', sourcetypesize = '100'),
+        "Title":text (sourcetypeid = '-9', sourcetypesize = '8'),
+        "FirstName":text (sourcetypeid = '-9', sourcetypesize = '50'),
+        "MiddleName":text (sourcetypeid = '-9', sourcetypesize = '50'),
+        "LastName":text (sourcetypeid = '-9', sourcetypesize = '50'),
+        "NameStyle":boolean (sourcetypeid = '-7', sourcetypesize = '1'),
+        "BirthDate":localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "MaritalStatus":text (sourcetypeid = '-15', sourcetypesize = '1'),
+        "Suffix":text (sourcetypeid = '-9', sourcetypesize = '10'),
+        "Gender":text (sourcetypeid = '-9', sourcetypesize = '1'),
+        "EmailAddress":text (sourcetypeid = '-9', sourcetypesize = '50'),
+        "YearlyIncome":decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        "TotalChildren":int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "NumberChildrenAtHome":int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "Education":text (sourcetypeid = '-9', sourcetypesize = '40'),
+        "Occupation":text (sourcetypeid = '-9', sourcetypesize = '100'),
+        "HouseOwnerFlag":text (sourcetypeid = '-15', sourcetypesize = '1'),
+        "NumberCarsOwned":int (sourcetypeid = '-6', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "AddressLine1":text (sourcetypeid = '-9', sourcetypesize = '120'),
+        "AddressLine2":text (sourcetypeid = '-9', sourcetypesize = '120'),
+        "Phone":text (sourcetypeid = '-9', sourcetypesize = '20'),
+        "DateFirstPurchase":localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustomerType":text (sourcetypeid = '-9', sourcetypesize = '15'),
+        "CompanyName":text (sourcetypeid = '-9', sourcetypesize = '100'),
+        "ETLLoadID":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "LoadDate":timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        "UpdateDate":timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    CONSTRAINT 'PK_DimCustomer_CustomerKey' PRIMARY KEY ( 'CustomerKey' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_DimCustomer"(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "CustomerKey" (any) OPT ANY
+             ADD "GeographyKey" (any) OPT ANY
+             ADD "CustomerLabel" (any) OPT ANY
+             ADD "Title" (any) OPT ANY
+             ADD "FirstName" (any) OPT ANY
+             ADD "MiddleName" (any) OPT ANY
+             ADD "LastName" (any) OPT ANY
+             ADD "NameStyle" (any) OPT ANY
+             ADD "BirthDate" (any) OPT ANY
+             ADD "MaritalStatus" (any) OPT ANY
+             ADD "Suffix" (any) OPT ANY
+             ADD "Gender" (any) OPT ANY
+             ADD "EmailAddress" (any) OPT ANY
+             ADD "YearlyIncome" (any) OPT ANY
+             ADD "TotalChildren" (any) OPT ANY
+             ADD "NumberChildrenAtHome" (any) OPT ANY
+             ADD "Education" (any) OPT ANY
+             ADD "Occupation" (any) OPT ANY
+             ADD "HouseOwnerFlag" (any) OPT ANY
+             ADD "NumberCarsOwned" (any) OPT ANY
+             ADD "AddressLine1" (any) OPT ANY
+             ADD "AddressLine2" (any) OPT ANY
+             ADD "Phone" (any) OPT ANY
+             ADD "DateFirstPurchase" (any) OPT ANY
+             ADD "CustomerType" (any) OPT ANY
+             ADD "CompanyName" (any) OPT ANY
+             ADD "ETLLoadID" (any) OPT ANY
+             ADD "LoadDate" (any) OPT ANY
+             ADD "UpdateDate" (any) OPT ANY
+        )
+        OUTPUTLIST ("AddressLine1", "AddressLine2", "BirthDate", "CompanyName", "CustomerKey", "CustomerLabel", "CustomerType", "DateFirstPurchase", "ETLLoadID", "Education", "EmailAddress", "FirstName", "Gender", "GeographyKey", "HouseOwnerFlag", "LastName", "LoadDate", "MaritalStatus", "MiddleName", "NameStyle", "NumberCarsOwned", "NumberChildrenAtHome", "Occupation", "Phone", "Suffix", "Title", "TotalChildren", "UpdateDate", "YearlyIncome"
+        )
+        WRAPPER (jdbc "bv_DimCustomer")
+    );
+

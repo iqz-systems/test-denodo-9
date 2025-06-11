@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_date FOLDER = '/1 - dataconnection/1 - data sources' AS SELECT bv_date."DateKey" AS date_key, bv_date."Date" AS "Date", bv_date."Year" AS "Year", bv_date."Quarter" AS "Quarter", bv_date."Month" AS "Month", bv_date."MonthName" AS "MonthName", bv_date."Day" AS "Day", bv_date."WeekdayName" AS "WeekdayName", bv_date."IsWeekend" AS "IsWeekend" FROM bv_date;
+
+ALTER VIEW iv_date
+ LAYOUT (bv_date = [20, 20, 200, 200]);
+

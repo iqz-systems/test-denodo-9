@@ -1,0 +1,14 @@
+﻿CREATE OR REPLACE VQL PROCEDURE fn_get_environments
+(transform_price OUT VARCHAR(5))
+AS (
+    CURSOR cursordata IS 'SELECT environment FROM get_environments';
+    var_environment cursordata%ROWTYPE;
+)
+BEGIN
+    OPEN cursordata;
+    FETCH cursordata INTO var_environment;
+    RETURN ROW ( transform_price) VALUES (var_environment.environment);
+    CLOSE cursordata;
+
+END;
+

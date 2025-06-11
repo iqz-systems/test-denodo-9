@@ -1,0 +1,14 @@
+﻿CREATE OR REPLACE VIEW get_environments FOLDER = '/1 - dataconnection/2 - base views' AS
+    SELECT CASE WHEN (property_value = 'devdenodo-9.iqzsystems.io') THEN
+               'DB2PROD'
+           ELSE
+               CASE WHEN (property_value = 'preprod01-9.iqzsystems.io') THEN
+                   'DB2USER'
+               ELSE
+                   CASE WHEN (property_value = 'preprod02-9.iqzsystems.io') THEN
+                       'DB2USER'
+                   END
+               END
+           END AS environment
+    FROM get_parameter('com.denodo.vdb.vdbinterface.server.VDBManagerImpl.registryURL') CONTEXT ('formatted' = 'yes');
+
