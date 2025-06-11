@@ -1,0 +1,3 @@
+ALTER ROLE promotion_testing
+GRANT CONNECT, METADATA, WRITE ON test_db;
+

@@ -1,0 +1,33 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_booking_typeBooking_Type"
+    FOLDER = '/1 - dataconnection/1 - data sources'
+    DATASOURCENAME=ds_sql_resort360db_copy
+    CATALOGNAME='${databases.test_db.folder.1 - dataconnection.folder.1 - data sources.views.jdbc.bv_booking_typebooking_type.CATALOGNAME}' 
+    SCHEMANAME='${databases.test_db.folder.1 - dataconnection.folder.1 - data sources.views.jdbc.bv_booking_typebooking_type.SCHEMANAME}' 
+    RELATIONNAME='Booking_Type' 
+    OUTPUTSCHEMA (
+        "Booking_Type_ID" = 'Booking_Type_ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        "Booking_Type_Description" = 'Booking_Type_Description' :'java.lang.String' (OPT) (sourcetypesize='30', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    )
+    CONSTRAINT 'PK__Booking___14A0097A1EBB9C89' PRIMARY KEY ( 'Booking_Type_ID' )
+    INDEX 'PK__Booking___14A0097A1EBB9C89' CLUSTER UNIQUE PRIMARY ( 'Booking_Type_ID' );
+
+CREATE OR REPLACE TABLE "bv_booking_typeBooking_Type" I18N us_est (
+        "Booking_Type_ID":long (notnull, autoincrement, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        "Booking_Type_Description":text (sourcetypeid = '12', sourcetypesize = '30')
+    )
+    FOLDER = '/1 - dataconnection/1 - data sources'
+    CONSTRAINT 'PK__Booking___14A0097A1EBB9C89' PRIMARY KEY ( 'Booking_Type_ID' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_booking_typeBooking_Type"(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "Booking_Type_ID" (any) OPT ANY
+             ADD "Booking_Type_Description" (any) OPT ANY
+        )
+        OUTPUTLIST ("Booking_Type_Description", "Booking_Type_ID"
+        )
+        WRAPPER (jdbc "bv_booking_typeBooking_Type")
+    );
+

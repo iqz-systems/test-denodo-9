@@ -1,0 +1,124 @@
+﻿CREATE OR REPLACE WRAPPER JDBC bv_customer_v1
+    FOLDER = '/1 - dataconnection/poc'
+    DATASOURCENAME=ds_retail_dw
+    SQLSENTENCE='select * from @p_schema @p_table
+union
+select * from @p_schema @p_table
+union
+select * from @p_schema_1 @p_table_1'   
+    OUTPUTSCHEMA (
+        "CustomerKey" = 'CustomerKey' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "GeographyKey" = 'GeographyKey' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "CustomerLabel" = 'CustomerLabel' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "Title" = 'Title' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='8', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "FirstName" = 'FirstName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "MiddleName" = 'MiddleName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "LastName" = 'LastName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "NameStyle" = 'NameStyle' :'java.lang.Boolean' (sourcetypedecimals='0', sourcetypesize='1', sourcetypeid='-7', sourcetypename='bit')  SORTABLE NOT UPDATEABLE,
+        "BirthDate" = 'BirthDate' :'java.time.LocalDate' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE NOT UPDATEABLE,
+        "MaritalStatus" = 'MaritalStatus' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='1', sourcetypeid='-15', sourcetypename='nchar')  SORTABLE NOT UPDATEABLE,
+        "Suffix" = 'Suffix' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "Gender" = 'Gender' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='1', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "EmailAddress" = 'EmailAddress' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "YearlyIncome" = 'YearlyIncome' :'java.math.BigDecimal' (sourcetypedecimals='4', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE NOT UPDATEABLE,
+        "TotalChildren" = 'TotalChildren' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE NOT UPDATEABLE,
+        "NumberChildrenAtHome" = 'NumberChildrenAtHome' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE NOT UPDATEABLE,
+        "Education" = 'Education' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='40', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "Occupation" = 'Occupation' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "HouseOwnerFlag" = 'HouseOwnerFlag' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='1', sourcetypeid='-15', sourcetypename='nchar')  SORTABLE NOT UPDATEABLE,
+        "NumberCarsOwned" = 'NumberCarsOwned' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='3', sourcetypeid='-6', sourcetypename='tinyint')  SORTABLE NOT UPDATEABLE,
+        "AddressLine1" = 'AddressLine1' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='120', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "AddressLine2" = 'AddressLine2' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='120', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "Phone" = 'Phone' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='20', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "DateFirstPurchase" = 'DateFirstPurchase' :'java.time.LocalDate' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE NOT UPDATEABLE,
+        "CustomerType" = 'CustomerType' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='15', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "CompanyName" = 'CompanyName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='100', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE NOT UPDATEABLE,
+        "ETLLoadID" = 'ETLLoadID' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE NOT UPDATEABLE,
+        "LoadDate" = 'LoadDate' :'java.time.LocalDateTime' (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        "UpdateDate" = 'UpdateDate' :'java.time.LocalDateTime' (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE NOT UPDATEABLE,
+        "P_SCHEMA" = 'P_SCHEMA' :'java.lang.String' (OBL) (DEFAULTVALUE='dbo.')  EXTERN SORTABLE,
+        "P_TABLE" = 'P_TABLE' :'java.lang.String' (OBL) (DEFAULTVALUE='dimcustomer')  EXTERN SORTABLE,
+        "P_SCHEMA_1" = 'P_SCHEMA_1' :'java.lang.String' (OBL) (DEFAULTVALUE='dbo.')  EXTERN SORTABLE,
+        "P_TABLE_1" = 'P_TABLE_1' :'java.lang.String' (OBL) (DEFAULTVALUE='dimcustomer')  EXTERN SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_customer_v1 I18N us_est (
+        "CustomerKey":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "GeographyKey":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustomerLabel":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '100'),
+        "Title":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '8'),
+        "FirstName":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "MiddleName":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "LastName":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "NameStyle":boolean (sourcetypeid = '-7', sourcetypedecimals = '0', sourcetypesize = '1'),
+        "BirthDate":localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "MaritalStatus":text (sourcetypeid = '-15', sourcetypedecimals = '0', sourcetypesize = '1'),
+        "Suffix":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Gender":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '1'),
+        "EmailAddress":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '50'),
+        "YearlyIncome":decimal (sourcetypeid = '3', sourcetypedecimals = '4', sourcetypesize = '19'),
+        "TotalChildren":int (sourcetypeid = '-6', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "NumberChildrenAtHome":int (sourcetypeid = '-6', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "Education":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '40'),
+        "Occupation":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '100'),
+        "HouseOwnerFlag":text (sourcetypeid = '-15', sourcetypedecimals = '0', sourcetypesize = '1'),
+        "NumberCarsOwned":int (sourcetypeid = '-6', sourcetypedecimals = '0', sourcetypesize = '3'),
+        "AddressLine1":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '120'),
+        "AddressLine2":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '120'),
+        "Phone":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20'),
+        "DateFirstPurchase":localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustomerType":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '15'),
+        "CompanyName":text (sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '100'),
+        "ETLLoadID":int (sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "LoadDate":timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        "UpdateDate":timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        "P_SCHEMA":text (extern),
+        "P_TABLE":text (extern),
+        "P_SCHEMA_1":text (extern),
+        "P_TABLE_1":text (extern)
+    )
+    FOLDER = '/1 - dataconnection/poc'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_customer_v1(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "CustomerKey" NOS ZERO ()
+             ADD "GeographyKey" NOS ZERO ()
+             ADD "CustomerLabel" NOS ZERO ()
+             ADD "Title" NOS ZERO ()
+             ADD "FirstName" NOS ZERO ()
+             ADD "MiddleName" NOS ZERO ()
+             ADD "LastName" NOS ZERO ()
+             ADD "NameStyle" NOS ZERO ()
+             ADD "BirthDate" NOS ZERO ()
+             ADD "MaritalStatus" NOS ZERO ()
+             ADD "Suffix" NOS ZERO ()
+             ADD "Gender" NOS ZERO ()
+             ADD "EmailAddress" NOS ZERO ()
+             ADD "YearlyIncome" NOS ZERO ()
+             ADD "TotalChildren" NOS ZERO ()
+             ADD "NumberChildrenAtHome" NOS ZERO ()
+             ADD "Education" NOS ZERO ()
+             ADD "Occupation" NOS ZERO ()
+             ADD "HouseOwnerFlag" NOS ZERO ()
+             ADD "NumberCarsOwned" NOS ZERO ()
+             ADD "AddressLine1" NOS ZERO ()
+             ADD "AddressLine2" NOS ZERO ()
+             ADD "Phone" NOS ZERO ()
+             ADD "DateFirstPurchase" NOS ZERO ()
+             ADD "CustomerType" NOS ZERO ()
+             ADD "CompanyName" NOS ZERO ()
+             ADD "ETLLoadID" NOS ZERO ()
+             ADD "LoadDate" NOS ZERO ()
+             ADD "UpdateDate" NOS ZERO ()
+             ADD "P_SCHEMA" (=) OBL ONE
+             ADD "P_TABLE" (=) OBL ONE
+             ADD "P_SCHEMA_1" (=) OBL ONE
+             ADD "P_TABLE_1" (=) OBL ONE
+        )
+        OUTPUTLIST ("AddressLine1", "AddressLine2", "BirthDate", "CompanyName", "CustomerKey", "CustomerLabel", "CustomerType", "DateFirstPurchase", "ETLLoadID", "Education", "EmailAddress", "FirstName", "Gender", "GeographyKey", "HouseOwnerFlag", "LastName", "LoadDate", "MaritalStatus", "MiddleName", "NameStyle", "NumberCarsOwned", "NumberChildrenAtHome", "Occupation", "Phone", "Suffix", "Title", "TotalChildren", "UpdateDate", "YearlyIncome"
+        )
+        WRAPPER (jdbc bv_customer_v1)
+    );
+
