@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_bv_date FOLDER = '/1 - dataconnection/1 - data sources' AS SELECT bv_date."DateKey" AS "DateKey", bv_date."Date" AS "Date", bv_date."Year" AS "Year", bv_date."Month" AS "Month", bv_date."Day" AS "Day" FROM bv_date;
+
+ALTER VIEW p_bv_date
+ LAYOUT (bv_date = [20, 20, 200, 200]);
+

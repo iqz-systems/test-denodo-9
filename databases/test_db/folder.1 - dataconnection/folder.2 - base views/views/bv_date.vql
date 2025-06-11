@@ -1,0 +1,48 @@
+﻿CREATE OR REPLACE WRAPPER JDBC bv_date
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db_copy
+    SQLSENTENCE='SELECT * FROM Resort360DB.dbo.date'   
+    OUTPUTSCHEMA (
+        "DateKey" = 'DateKey' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "Date" = 'Date' :'java.time.LocalDate' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  ESCAPE NOT NULL SORTABLE NOT UPDATEABLE,
+        "Year" = 'Year' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  ESCAPE NOT NULL SORTABLE NOT UPDATEABLE,
+        "Quarter" = 'Quarter' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "Month" = 'Month' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  ESCAPE NOT NULL SORTABLE NOT UPDATEABLE,
+        "MonthName" = 'MonthName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='20', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "Day" = 'Day' :'java.lang.Integer' (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  ESCAPE NOT NULL SORTABLE NOT UPDATEABLE,
+        "WeekdayName" = 'WeekdayName' :'java.lang.String' (sourcetypedecimals='0', sourcetypesize='20', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE NOT UPDATEABLE,
+        "IsWeekend" = 'IsWeekend' :'java.lang.Boolean' (sourcetypedecimals='0', sourcetypesize='1', sourcetypeid='-7', sourcetypename='bit')  NOT NULL SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE bv_date I18N us_est (
+        "DateKey":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Date":localdate (notnull, sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Year":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Quarter":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "Month":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "MonthName":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20'),
+        "Day":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "WeekdayName":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20'),
+        "IsWeekend":boolean (notnull, sourcetypeid = '-7', sourcetypedecimals = '0', sourcetypesize = '1')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_date(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "DateKey" NOS ZERO ()
+             ADD "Date" NOS ZERO ()
+             ADD "Year" NOS ZERO ()
+             ADD "Quarter" NOS ZERO ()
+             ADD "Month" NOS ZERO ()
+             ADD "MonthName" NOS ZERO ()
+             ADD "Day" NOS ZERO ()
+             ADD "WeekdayName" NOS ZERO ()
+             ADD "IsWeekend" NOS ZERO ()
+        )
+        OUTPUTLIST ("Date", "DateKey", "Day", "IsWeekend", "Month", "MonthName", "Quarter", "WeekdayName", "Year"
+        )
+        WRAPPER (jdbc bv_date)
+    );
+
