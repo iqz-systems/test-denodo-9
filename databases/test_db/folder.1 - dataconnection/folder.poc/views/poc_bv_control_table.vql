@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW poc_bv_control_table FOLDER = '/1 - dataconnection/poc' AS SELECT bv_control_table.id AS id, bv_control_table.d_environment AS d_environment, bv_control_table.d_schema AS d_schema, bv_control_table.d_table AS d_table FROM bv_control_table;
+
+ALTER VIEW poc_bv_control_table
+ LAYOUT (bv_control_table = [20, 20, 200, 200]);
+
