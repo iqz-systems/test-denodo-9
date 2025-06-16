@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW poc_bv_booking_type FOLDER = '/2-integration' AS SELECT p_bv_booking_type."Booking_Type_ID" AS "Booking_Type_ID", p_bv_booking_type."Booking_Type_Description" AS "Booking_Type_Description" FROM p_bv_booking_type;
+
+ALTER VIEW poc_bv_booking_type
+ LAYOUT (p_bv_booking_type = [20, 20, 200, 200]);
+
