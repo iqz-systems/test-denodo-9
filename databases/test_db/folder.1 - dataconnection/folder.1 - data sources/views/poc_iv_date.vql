@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW poc_iv_date FOLDER = '/1 - dataconnection/1 - data sources' AS SELECT iv_date.date_key AS date_key, iv_date."Date" AS "Date", iv_date."Year" AS "Year", iv_date."Quarter" AS "Quarter", iv_date."Month" AS "Month", iv_date."MonthName" AS "MonthName", iv_date."Day" AS "Day", iv_date."WeekdayName" AS "WeekdayName", iv_date."IsWeekend" AS "IsWeekend" FROM iv_date;
+
+ALTER VIEW poc_iv_date
+ LAYOUT (iv_date = [20, 20, 200, 200]);
+
