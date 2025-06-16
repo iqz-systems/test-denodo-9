@@ -15,7 +15,7 @@
     );
 
 CREATE OR REPLACE TABLE bv_date I18N us_est (
-        "DateKey":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "DateKey":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10', description = 'DataKey'),
         "Date":localdate (notnull, sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10', description = 'date'),
         "Year":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
         "Quarter":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
