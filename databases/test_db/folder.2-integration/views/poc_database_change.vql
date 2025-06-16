@@ -1,5 +1,0 @@
-﻿CREATE OR REPLACE VIEW poc_database_change FOLDER = '/2-integration' AS SELECT database_change.db_name AS db_name, database_change.table_name AS table_name, database_change.field AS field, database_change.type AS type, database_change.old_type AS old_type, database_change.modification AS modification, database_change.depth AS depth FROM database_change;
-
-ALTER VIEW poc_database_change
- LAYOUT (database_change = [20, 20, 200, 200]);
-
