@@ -1,0 +1,31 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_booking_type
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_booking_type.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_booking_type.SCHEMANAME}' 
+    RELATIONNAME='Booking_Type' 
+    OUTPUTSCHEMA (
+        booking_type_id = 'Booking_Type_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        booking_type_description = 'Booking_Type_Description' :'java.lang.String' (OPT) (sourcetypesize='30', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_booking_type I18N us_est (
+        booking_type_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        booking_type_description:text (sourcetypeid = '12', sourcetypesize = '30')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    PRIMARY KEY ( 'booking_type_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_booking_type(
+        I18N us_est
+        CONSTRAINTS (
+             ADD booking_type_id (any) OPT ANY
+             ADD booking_type_description (any) OPT ANY
+        )
+        OUTPUTLIST (booking_type_description, booking_type_id
+        )
+        WRAPPER (jdbc bv_booking_type)
+    );
+

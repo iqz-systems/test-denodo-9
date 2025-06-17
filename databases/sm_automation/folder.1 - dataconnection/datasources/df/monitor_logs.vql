@@ -1,0 +1,10 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF monitor_logs
+    FOLDER = '/1 - dataconnection'
+    IGNOREMATCHINGERRORS = FALSE
+    ROUTE LOCAL 'LocalConnection' '${databases.sm_automation.folder.1 - dataconnection.datasources.df.monitor_logs.ROUTE.LOCAL.PATH}' FILENAMEPATTERN = ' '
+    COLUMNDELIMITER = '\t'
+    ENDOFLINEDELIMITER = '\n'
+    BEGINDELIMITER = 'ServerName'
+    HEADER = TRUE;
+

@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_denied_reason
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_denied_reason.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_denied_reason.SCHEMANAME}' 
+    RELATIONNAME='Denied_Reason' 
+    OUTPUTSCHEMA (
+        denied_reason_id = 'Denied_Reason_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        denied_reason_description = 'Denied_Reason_Description' :'java.lang.String' (OPT) (sourcetypesize='30', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_denied_reason I18N us_est (
+        denied_reason_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        denied_reason_description:text (sourcetypeid = '12', sourcetypesize = '30')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_denied_reason(
+        I18N us_est
+        CONSTRAINTS (
+             ADD denied_reason_id (any) OPT ANY
+             ADD denied_reason_description (any) OPT ANY
+        )
+        OUTPUTLIST (denied_reason_description, denied_reason_id
+        )
+        WRAPPER (jdbc bv_denied_reason)
+    );
+

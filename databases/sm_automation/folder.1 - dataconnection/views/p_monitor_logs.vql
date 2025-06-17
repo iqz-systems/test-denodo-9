@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_monitor_logs FOLDER = '/1 - dataconnection' AS SELECT monitor_logs.id_0 AS id_0, monitor_logs."Host" AS "Host", monitor_logs."Port" AS "Port", monitor_logs."NotificationType" AS "NotificationType", monitor_logs."ConnectionId" AS "ConnectionId", monitor_logs."ConnectionStartTime" AS "ConnectionStartTime", monitor_logs."ConnectionEndTime" AS "ConnectionEndTime", monitor_logs."ClientIP" AS "ClientIP", monitor_logs."UserAgent" AS "UserAgent", monitor_logs."AccessInterface" AS "AccessInterface", monitor_logs."SessionId" AS "SessionId", monitor_logs."SessionStartTime" AS "SessionStartTime", monitor_logs."SessionEndTime" AS "SessionEndTime", monitor_logs."Login" AS "Login", monitor_logs."DatabaseName" AS "DatabaseName", monitor_logs."WebServiceName" AS "WebServiceName", monitor_logs."JMSQueueName" AS "JMSQueueName", monitor_logs."IntermediateClientIP" AS "IntermediateClientIP" FROM monitor_logs WHERE id_0 <> 'ServerName';
+
+ALTER VIEW p_monitor_logs
+ LAYOUT (monitor_logs = [20, 20, 200, 200]);
+

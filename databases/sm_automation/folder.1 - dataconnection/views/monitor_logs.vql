@@ -1,0 +1,74 @@
+﻿CREATE OR REPLACE WRAPPER DF monitor_logs
+    FOLDER = '/1 - dataconnection'
+    DATASOURCENAME=monitor_logs
+    OUTPUTSCHEMA (
+        id_0 = '',
+        "Host" = 'Host',
+        "Port" = 'Port',
+        "NotificationType" = 'NotificationType',
+        "ConnectionId" = 'ConnectionId',
+        "ConnectionStartTime" = 'ConnectionStartTime',
+        "ConnectionEndTime" = 'ConnectionEndTime',
+        "ClientIP" = 'ClientIP',
+        "UserAgent" = 'UserAgent',
+        "AccessInterface" = 'AccessInterface',
+        "SessionId" = 'SessionId',
+        "SessionStartTime" = 'SessionStartTime',
+        "SessionEndTime" = 'SessionEndTime',
+        "Login" = 'Login',
+        "DatabaseName" = 'DatabaseName',
+        "WebServiceName" = 'WebServiceName',
+        "JMSQueueName" = 'JMSQueueName',
+        "IntermediateClientIP" = 'IntermediateClientIP'
+    );
+
+CREATE OR REPLACE TABLE monitor_logs I18N us_est (
+        id_0:text,
+        "Host":text,
+        "Port":text,
+        "NotificationType":text,
+        "ConnectionId":text,
+        "ConnectionStartTime":text,
+        "ConnectionEndTime":text,
+        "ClientIP":text,
+        "UserAgent":text,
+        "AccessInterface":text,
+        "SessionId":text,
+        "SessionStartTime":text,
+        "SessionEndTime":text,
+        "Login":text,
+        "DatabaseName":text,
+        "WebServiceName":text,
+        "JMSQueueName":text,
+        "IntermediateClientIP":text
+    )
+    FOLDER = '/1 - dataconnection'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD monitor_logs(
+        I18N us_est
+        CONSTRAINTS (
+             ADD id_0 NOS ZERO ()
+             ADD "Host" NOS ZERO ()
+             ADD "Port" NOS ZERO ()
+             ADD "NotificationType" NOS ZERO ()
+             ADD "ConnectionId" NOS ZERO ()
+             ADD "ConnectionStartTime" NOS ZERO ()
+             ADD "ConnectionEndTime" NOS ZERO ()
+             ADD "ClientIP" NOS ZERO ()
+             ADD "UserAgent" NOS ZERO ()
+             ADD "AccessInterface" NOS ZERO ()
+             ADD "SessionId" NOS ZERO ()
+             ADD "SessionStartTime" NOS ZERO ()
+             ADD "SessionEndTime" NOS ZERO ()
+             ADD "Login" NOS ZERO ()
+             ADD "DatabaseName" NOS ZERO ()
+             ADD "WebServiceName" NOS ZERO ()
+             ADD "JMSQueueName" NOS ZERO ()
+             ADD "IntermediateClientIP" NOS ZERO ()
+        )
+        OUTPUTLIST ("AccessInterface", "ClientIP", "ConnectionEndTime", "ConnectionId", "ConnectionStartTime", "DatabaseName", "Host", "IntermediateClientIP", "JMSQueueName", "Login", "NotificationType", "Port", "SessionEndTime", "SessionId", "SessionStartTime", "UserAgent", "WebServiceName", id_0
+        )
+        WRAPPER (df monitor_logs)
+    );
+

@@ -1,0 +1,20 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE MONGODB sample_mogodb
+    CONNECTION (
+        URI = '${databases.sm_automation.datasources.mongodb.sample_mogodb.URI}'
+    )
+    AUTHENTICATION (
+        USERNAME = '${databases.sm_automation.datasources.mongodb.sample_mogodb.USERNAME}'
+        USERPASSWORD = '${databases.sm_automation.datasources.mongodb.sample_mogodb.USERPASSWORD}' ${databases.sm_automation.datasources.mongodb.sample_mogodb.USERPASSWORD.ENCRYPTED}
+     )
+    POOL (
+        MAXACTIVE = 100
+        MINACTIVE = 0
+        CONNECTTIMEOUT = 10000
+        SOCKETTIMEOUT = 0
+        WAITQUEUETIMEOUT = 120000
+    )
+    SOURCECONFIGURATION (
+        delegatecompoundindexedfieldprojection = true
+    );
+

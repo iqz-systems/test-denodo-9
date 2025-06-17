@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_product FOLDER = '/2 - integration' AS SELECT bv_product.item_id AS item_id, bv_product.item_code AS item_code, bv_product.item_name AS item_name, bv_product.description AS description, bv_product.item_sub_category_id AS item_sub_category_id, bv_product.unit AS unit, bv_product.price AS price, bv_product.quantity AS quantity, bv_product.reorder_level AS reorder_level, bv_product.is_active AS is_active, bv_product.other_details AS other_details FROM bv_product;
+
+ALTER VIEW iv_product
+ LAYOUT (bv_product = [20, 20, 200, 200]);
+

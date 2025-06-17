@@ -1,0 +1,34 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_product_sub_category
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_product_sub_category.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_product_sub_category.SCHEMANAME}' 
+    RELATIONNAME='Product_Sub_Category' 
+    OUTPUTSCHEMA (
+        product_sub_category_id = 'Product_Sub_Category_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        product_sub_category_name = 'Product_Sub_Category_Name' :'java.lang.String' (OPT) (sourcetypesize='25', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        product_category_name = 'Product_Category_Name' :'java.lang.String' (OPT) (sourcetypesize='25', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_product_sub_category I18N us_est (
+        product_sub_category_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        product_sub_category_name:text (sourcetypeid = '12', sourcetypesize = '25'),
+        product_category_name:text (sourcetypeid = '12', sourcetypesize = '25')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    TAGS (inventory)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_product_sub_category(
+        I18N us_est
+        CONSTRAINTS (
+             ADD product_sub_category_id (any) OPT ANY
+             ADD product_sub_category_name (any) OPT ANY
+             ADD product_category_name (any) OPT ANY
+        )
+        OUTPUTLIST (product_category_name, product_sub_category_id, product_sub_category_name
+        )
+        WRAPPER (jdbc bv_product_sub_category)
+    );
+

@@ -1,0 +1,98 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_booking
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_booking.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_booking.SCHEMANAME}' 
+    RELATIONNAME='Booking' 
+    OUTPUTSCHEMA (
+        resort_id = 'Resort_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        booking_id = 'Booking_ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint')  NOT NULL SORTABLE,
+        booking_date = 'Booking_Date' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE,
+        booking_type = 'Booking_Type' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        tour_operator_id = 'Tour_Operator_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        tour_operator_contract_id = 'Tour_Operator_Contract_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        customer_id = 'Customer_ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint')  SORTABLE,
+        arrival_date = 'Arrival_Date' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        arrival_time = 'Arrival_Time' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        no_of_pax = 'No_of_Pax' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        reservation_start_date = 'Reservation_Start_Date' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        reservation_end_date = 'Reservation_End_Date' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        no_of_days = 'No_Of_Days' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        is_checked_in = 'Is_Checked_in' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        room_master_id = 'Room_Master_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        room_fare = 'Room_Fare' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        amount_before_discount = 'Amount_Before_Discount' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        percentagediscount = 'PercentageDiscount' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='3', sourcetypename='decimal')  SORTABLE,
+        final_amount = 'Final_Amount' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        departure_date = 'Departure_Date' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        departure_time = 'Departure_Time' :'java.time.LocalTime' (OPT) (sourcetypedecimals='7', sourcetypesize='16', sourcetypeid='92', sourcetypename='time')  SORTABLE,
+        is_checked_out = 'Is_Checked_Out' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        createddate = 'CreatedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE,
+        customer_enquiry_id = 'CUSTOMER_ENQUIRY_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_booking I18N us_est (
+        resort_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        booking_id:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        booking_date:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23') TAGS (booking_date),
+        booking_type:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        tour_operator_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        tour_operator_contract_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        customer_id:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19'),
+        arrival_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        arrival_time:text (sourcetypeid = '12', sourcetypesize = '50'),
+        no_of_pax:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        reservation_start_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        reservation_end_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        no_of_days:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        is_checked_in:text (sourcetypeid = '12', sourcetypesize = '50'),
+        room_master_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        room_fare:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        amount_before_discount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19') TAGS (sales),
+        percentagediscount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '5'),
+        final_amount:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19') TAGS (sales),
+        departure_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
+        departure_time:time (sourcetypeid = '92', sourcetypedecimals = '7', sourcetypesize = '16'),
+        is_checked_out:text (sourcetypeid = '12', sourcetypesize = '50'),
+        createddate:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        customer_enquiry_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    PRIMARY KEY ( 'resort_id' , 'booking_id' )
+    TAGS (booking)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_booking(
+        I18N us_est
+        CONSTRAINTS (
+             ADD resort_id (any) OPT ANY
+             ADD booking_id (any) OPT ANY
+             ADD booking_date (any) OPT ANY
+             ADD booking_type (any) OPT ANY
+             ADD tour_operator_id (any) OPT ANY
+             ADD tour_operator_contract_id (any) OPT ANY
+             ADD customer_id (any) OPT ANY
+             ADD arrival_date (any) OPT ANY
+             ADD arrival_time (any) OPT ANY
+             ADD no_of_pax (any) OPT ANY
+             ADD reservation_start_date (any) OPT ANY
+             ADD reservation_end_date (any) OPT ANY
+             ADD no_of_days (any) OPT ANY
+             ADD is_checked_in (any) OPT ANY
+             ADD room_master_id (any) OPT ANY
+             ADD room_fare (any) OPT ANY
+             ADD amount_before_discount (any) OPT ANY
+             ADD percentagediscount (any) OPT ANY
+             ADD final_amount (any) OPT ANY
+             ADD departure_date (any) OPT ANY
+             ADD departure_time (any) OPT ANY
+             ADD is_checked_out (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD customer_enquiry_id (any) OPT ANY
+        )
+        OUTPUTLIST (amount_before_discount, arrival_date, arrival_time, booking_date, booking_id, booking_type, createddate, customer_enquiry_id, customer_id, departure_date, departure_time, final_amount, is_checked_in, is_checked_out, no_of_days, no_of_pax, percentagediscount, reservation_end_date, reservation_start_date, resort_id, room_fare, room_master_id, tour_operator_contract_id, tour_operator_id
+        )
+        WRAPPER (jdbc bv_booking)
+    );
+

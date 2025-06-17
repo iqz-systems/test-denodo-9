@@ -1,0 +1,38 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_amenities
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_amenities.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_amenities.SCHEMANAME}' 
+    RELATIONNAME='Amenities' 
+    OUTPUTSCHEMA (
+        resort_id = 'Resort_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        amenities_id = 'Amenities_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        amenities_name = 'Amenities_Name' :'java.lang.String' (OPT) (sourcetypesize='12', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        rate = 'Rate' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_amenities I18N us_est (
+        resort_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        amenities_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        amenities_name:text (sourcetypeid = '12', sourcetypesize = '12'),
+        rate:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    PRIMARY KEY ( 'amenities_id' )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD bv_amenities(
+        I18N us_est
+        CONSTRAINTS (
+             ADD resort_id (any) OPT ANY
+             ADD amenities_id (any) OPT ANY
+             ADD amenities_name (any) OPT ANY
+             ADD rate (any) OPT ANY
+        )
+        OUTPUTLIST (amenities_id, amenities_name, rate, resort_id
+        )
+        WRAPPER (jdbc bv_amenities)
+    );
+

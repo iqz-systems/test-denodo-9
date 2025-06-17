@@ -1,0 +1,7 @@
+﻿*/databases/sm_automation/folder.1 - dataconnection/1 - dataconnection.vql
+1/databases/sm_automation/folder.1 - dataconnection/folder.2 - base views/2 - base views.vql
+1/tags/customer.vql
+1/tags/pii.vql
+1/tags/restricted.vql
+*/databases/sm_automation/folder.1 - dataconnection/folder.1 - data sources/1 - data sources.vql
+1/databases/sm_automation/folder.1 - dataconnection/folder.1 - data sources/datasources/jdbc/ds_sql_resort360db.vql

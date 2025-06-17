@@ -1,0 +1,55 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_customer_amenities_booking
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customer_amenities_booking.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customer_amenities_booking.SCHEMANAME}' 
+    RELATIONNAME='Customer_Amenities_Booking' 
+    OUTPUTSCHEMA (
+        resort_id = 'Resort_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        customer_outlet_id = 'Customer_outlet_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        booking_id = 'Booking_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        amenities_id = 'Amenities_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        customer_id = 'Customer_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        booking_date = 'Booking_Date' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        booking_time = 'Booking_Time' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        slot_booked = 'Slot_Booked' :'java.lang.String' (OPT) (sourcetypesize='9', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        no_of_hours = 'No_of_Hours' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        no_of_persons = 'No_Of_Persons' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_customer_amenities_booking I18N us_est (
+        resort_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        customer_outlet_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        booking_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        amenities_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        customer_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        booking_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10') TAGS (booking_date),
+        booking_time:text (sourcetypeid = '12', sourcetypesize = '50'),
+        slot_booked:text (sourcetypeid = '12', sourcetypesize = '9'),
+        no_of_hours:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        no_of_persons:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    TAGS (booking)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_customer_amenities_booking(
+        I18N us_est
+        CONSTRAINTS (
+             ADD resort_id (any) OPT ANY
+             ADD customer_outlet_id (any) OPT ANY
+             ADD booking_id (any) OPT ANY
+             ADD amenities_id (any) OPT ANY
+             ADD customer_id (any) OPT ANY
+             ADD booking_date (any) OPT ANY
+             ADD booking_time (any) OPT ANY
+             ADD slot_booked (any) OPT ANY
+             ADD no_of_hours (any) OPT ANY
+             ADD no_of_persons (any) OPT ANY
+        )
+        OUTPUTLIST (amenities_id, booking_date, booking_id, booking_time, customer_id, customer_outlet_id, no_of_hours, no_of_persons, resort_id, slot_booked
+        )
+        WRAPPER (jdbc bv_customer_amenities_booking)
+    );
+
