@@ -1,0 +1,23 @@
+﻿CREATE OR REPLACE WRAPPER DF "customer_sample_data_47a541d6-305e-49d4-8bd0-7387fddc184d"
+    FOLDER = '/1-dataconnection/1-data source'
+    DATASOURCENAME=customer_sample_data
+    OUTPUTSCHEMA (
+        "ThissampleCSVfileisprovidedbySampleFilescomVisitusformoresamplefilesandresources_0" = '# This sample CSV file is provided by Sample-Files.com. Visit us for more sample files and resources.'
+    );
+
+CREATE OR REPLACE TABLE customer_sample_data I18N us_est (
+        "ThissampleCSVfileisprovidedbySampleFilescomVisitusformoresamplefilesandresources_0":text
+    )
+    FOLDER = '/1-dataconnection/1-data source'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD customer_sample_data(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "ThissampleCSVfileisprovidedbySampleFilescomVisitusformoresamplefilesandresources_0" NOS ZERO ()
+        )
+        OUTPUTLIST ("ThissampleCSVfileisprovidedbySampleFilescomVisitusformoresamplefilesandresources_0"
+        )
+        WRAPPER (df "customer_sample_data_47a541d6-305e-49d4-8bd0-7387fddc184d")
+    );
+
