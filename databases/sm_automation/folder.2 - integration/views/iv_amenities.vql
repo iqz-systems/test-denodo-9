@@ -1,4 +1,7 @@
-﻿CREATE OR REPLACE VIEW iv_amenities FOLDER = '/2 - integration' AS SELECT bv_amenities.resort_id AS resort_id, bv_amenities.amenities_id AS amenities_id, bv_amenities.amenities_name AS amenities_name, bv_amenities.rate AS rate FROM bv_amenities;
+﻿CREATE OR REPLACE VIEW iv_amenities FOLDER = '/2 - integration' (
+    resort_id (description = 'resort id')
+ )
+ AS SELECT bv_amenities.resort_id AS resort_id, bv_amenities.amenities_id AS amenities_id, bv_amenities.amenities_name AS amenities_name, bv_amenities.rate AS rate FROM bv_amenities;
 
 ALTER VIEW iv_amenities
  LAYOUT (bv_amenities = [20, 20, 200, 200]);
