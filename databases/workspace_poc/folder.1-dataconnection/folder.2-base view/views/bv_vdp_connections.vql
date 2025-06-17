@@ -23,7 +23,7 @@
     );
 
 CREATE OR REPLACE TABLE bv_vdp_connections I18N us_est (
-        "ServerName":text,
+        "ServerName":text (description = 'servername'),
         "Host":text,
         "Port":text,
         "NotificationType":text,
