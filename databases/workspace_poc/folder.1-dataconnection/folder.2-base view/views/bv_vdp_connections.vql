@@ -1,0 +1,74 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_vdp_connections
+    FOLDER = '/1-dataconnection/2-base view'
+    DATASOURCENAME=audit_views_dm_log.ds_vdp_connections
+    OUTPUTSCHEMA (
+        "ServerName" = 'Column0',
+        "Host" = 'Column1',
+        "Port" = 'Column2',
+        "NotificationType" = 'Column3',
+        "ConnectionId" = 'Column4',
+        "ConnectionStartTime" = 'Column5',
+        "ConnectionEndTime" = 'Column6',
+        "ClientIp" = 'Column7',
+        "UserAgent" = 'Column8',
+        "AccessInterface" = 'Column9',
+        "SessionId" = 'Column10',
+        "SessionStartTime" = 'Column11',
+        "SessionEndTime" = 'Column12',
+        "Login" = 'Column13',
+        "Database" = 'Column14',
+        "WebServiceName" = 'Column15',
+        "JMSQueueName" = 'Column16',
+        "IntermediateClientIP" = 'Column17'
+    );
+
+CREATE OR REPLACE TABLE bv_vdp_connections I18N us_est (
+        "ServerName":text,
+        "Host":text,
+        "Port":text,
+        "NotificationType":text,
+        "ConnectionId":text,
+        "ConnectionStartTime":timestamp,
+        "ConnectionEndTime":timestamp,
+        "ClientIp":text,
+        "UserAgent":text,
+        "AccessInterface":text,
+        "SessionId":text,
+        "SessionStartTime":timestamp,
+        "SessionEndTime":timestamp,
+        "Login":text,
+        "Database":text,
+        "WebServiceName":text,
+        "JMSQueueName":text,
+        "IntermediateClientIP":text (description = 'clientip')
+    )
+    FOLDER = '/1-dataconnection/2-base view'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_vdp_connections(
+        I18N us_est
+        CONSTRAINTS (
+             ADD "ServerName" NOS ZERO ()
+             ADD "Host" NOS ZERO ()
+             ADD "Port" NOS ZERO ()
+             ADD "NotificationType" NOS ZERO ()
+             ADD "ConnectionId" NOS ZERO ()
+             ADD "ConnectionStartTime" NOS ZERO ()
+             ADD "ConnectionEndTime" NOS ZERO ()
+             ADD "ClientIp" NOS ZERO ()
+             ADD "UserAgent" NOS ZERO ()
+             ADD "AccessInterface" NOS ZERO ()
+             ADD "SessionId" NOS ZERO ()
+             ADD "SessionStartTime" NOS ZERO ()
+             ADD "SessionEndTime" NOS ZERO ()
+             ADD "Login" NOS ZERO ()
+             ADD "Database" NOS ZERO ()
+             ADD "WebServiceName" NOS ZERO ()
+             ADD "JMSQueueName" NOS ZERO ()
+             ADD "IntermediateClientIP" NOS ZERO ()
+        )
+        OUTPUTLIST ("AccessInterface", "ClientIp", "ConnectionEndTime", "ConnectionId", "ConnectionStartTime", "Database", "Host", "IntermediateClientIP", "JMSQueueName", "Login", "NotificationType", "Port", "ServerName", "SessionEndTime", "SessionId", "SessionStartTime", "UserAgent", "WebServiceName"
+        )
+        WRAPPER (df bv_vdp_connections)
+    );
+
