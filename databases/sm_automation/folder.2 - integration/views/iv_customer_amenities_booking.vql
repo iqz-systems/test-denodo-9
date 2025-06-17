@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_customer_amenities_booking FOLDER = '/2 - integration' AS SELECT bv_customer_amenities_booking.resort_id AS resort_id, bv_customer_amenities_booking.customer_outlet_id AS customer_outlet_id, bv_customer_amenities_booking.booking_id AS booking_id, bv_customer_amenities_booking.amenities_id AS amenities_id, bv_customer_amenities_booking.customer_id AS customer_id, bv_customer_amenities_booking.booking_date AS booking_date, bv_customer_amenities_booking.booking_time AS booking_time, bv_customer_amenities_booking.slot_booked AS slot_booked, bv_customer_amenities_booking.no_of_hours AS no_of_hours, bv_customer_amenities_booking.no_of_persons AS no_of_persons FROM bv_customer_amenities_booking;
+
+ALTER VIEW iv_customer_amenities_booking
+ LAYOUT (bv_customer_amenities_booking = [20, 20, 200, 200]);
+

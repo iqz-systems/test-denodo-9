@@ -1,0 +1,65 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_customer
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customer.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customer.SCHEMANAME}' 
+    RELATIONNAME='Customer' 
+    OUTPUTSCHEMA (
+        customer_id = 'Customer_ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='-5', sourcetypename='bigint')  NOT NULL SORTABLE,
+        first_name = 'First_Name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        last_name = 'Last_Name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        dob = 'DOB' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE,
+        gender = 'Gender' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        email = 'Email' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        nationality = 'Nationality' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        mobile = 'Mobile' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        address = 'Address' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        passportno = 'PassportNo' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        pax_count = 'Pax_Count' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        state_id = 'State_ID' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        createddate = 'CreatedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_customer I18N us_est (
+        customer_id:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = 'Customer ID'),
+        first_name:text (sourcetypeid = '12', sourcetypesize = '50'),
+        last_name:text (sourcetypeid = '12', sourcetypesize = '50'),
+        dob:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10') TAGS (pii, restricted),
+        gender:text (sourcetypeid = '12', sourcetypesize = '50'),
+        email:text (sourcetypeid = '12', sourcetypesize = '50'),
+        nationality:text (sourcetypeid = '12', sourcetypesize = '100'),
+        mobile:text (sourcetypeid = '12', sourcetypesize = '50') TAGS (pii, restricted),
+        address:text (sourcetypeid = '12', sourcetypesize = '50'),
+        passportno:text (sourcetypeid = '12', sourcetypesize = '50') TAGS (pii, restricted),
+        pax_count:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        state_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        createddate:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    PRIMARY KEY ( 'customer_id' )
+    TAGS (customer, pii)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_customer(
+        I18N us_est
+        CONSTRAINTS (
+             ADD customer_id (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD dob (any) OPT ANY
+             ADD gender (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD nationality (any) OPT ANY
+             ADD mobile (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD passportno (any) OPT ANY
+             ADD pax_count (any) OPT ANY
+             ADD state_id (any) OPT ANY
+             ADD createddate (any) OPT ANY
+        )
+        OUTPUTLIST (address, createddate, customer_id, dob, email, first_name, gender, last_name, mobile, nationality, passportno, pax_count, state_id
+        )
+        WRAPPER (jdbc bv_customer)
+    );
+

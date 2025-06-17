@@ -1,0 +1,22 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE MONGODB "Mongo"
+    FOLDER = '/1 - dataconnection/1 - data sources'
+    CONNECTION (
+        URI = '${databases.sm_automation.folder.1 - dataconnection.folder.1 - data sources.datasources.mongodb.mongo.URI}'
+    )
+    AUTHENTICATION (
+        USERNAME = '${databases.sm_automation.folder.1 - dataconnection.folder.1 - data sources.datasources.mongodb.mongo.USERNAME}'
+        USERPASSWORD = '${databases.sm_automation.folder.1 - dataconnection.folder.1 - data sources.datasources.mongodb.mongo.USERPASSWORD}' ${databases.sm_automation.folder.1 - dataconnection.folder.1 - data sources.datasources.mongodb.mongo.USERPASSWORD.ENCRYPTED}
+     )
+    POOL (
+        MAXACTIVE = 100
+        MINACTIVE = 0
+        CONNECTTIMEOUT = 10000
+        SOCKETTIMEOUT = 0
+        WAITQUEUETIMEOUT = 120000
+    )
+    SOURCECONFIGURATION (
+        delegatecompoundindexedfieldprojection = true,
+        delegateoperatorslist = (=, exists, >=, >, in, is not null, is null, <=, like, <, <>, notin, notlike)
+    );
+

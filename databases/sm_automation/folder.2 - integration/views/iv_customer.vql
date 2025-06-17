@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_customer FOLDER = '/2 - integration' AS SELECT bv_customer.customer_id AS customer_id, bv_customer.first_name AS first_name, bv_customer.last_name AS last_name, bv_customer.dob AS dob, bv_customer.gender AS gender, bv_customer.email AS email, bv_customer.nationality AS nationality, bv_customer.mobile AS mobile, bv_customer.address AS address, bv_customer.passportno AS passportno, bv_customer.pax_count AS pax_count, bv_customer.state_id AS state_id, bv_customer.createddate AS createddate FROM bv_customer;
+
+ALTER VIEW iv_customer
+ LAYOUT (bv_customer = [20, 20, 200, 200]);
+

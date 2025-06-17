@@ -1,0 +1,61 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_product
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_resort360db
+    CATALOGNAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_product.CATALOGNAME}' 
+    SCHEMANAME='${databases.sm_automation.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_product.SCHEMANAME}' 
+    RELATIONNAME='Product' 
+    OUTPUTSCHEMA (
+        item_id = 'ITEM_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        item_code = 'ITEM_CODE' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        item_name = 'ITEM_NAME' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        description = 'DESCRIPTION' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        item_sub_category_id = 'ITEM_SUB_CATEGORY_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        unit = 'UNIT' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        price = 'PRICE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT SORTABLE,
+        quantity = 'QUANTITY' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        reorder_level = 'REORDER_LEVEL' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        is_active = 'IS_ACTIVE' :'java.lang.Boolean' (OPT) (sourcetypesize='1', sourcetypeid='-7', sourcetypename='bit')  SORTABLE,
+        other_details = 'OTHER_DETAILS' :'java.lang.String' (OPT) (sourcetypesize='10', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    )
+    CONSTRAINT 'PK__PRODUCT__ADFD89A0D7229A97' PRIMARY KEY ( 'ITEM_ID' )
+    INDEX 'PK__PRODUCT__ADFD89A0D7229A97' CLUSTER UNIQUE PRIMARY ( 'ITEM_ID' );
+
+CREATE OR REPLACE TABLE bv_product I18N us_est (
+        item_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        item_code:text (sourcetypeid = '12', sourcetypesize = '10'),
+        item_name:text (sourcetypeid = '12', sourcetypesize = '50'),
+        description:text (sourcetypeid = '12', sourcetypesize = '50'),
+        item_sub_category_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        unit:text (sourcetypeid = '12', sourcetypesize = '10'),
+        price:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        quantity:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        reorder_level:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        is_active:boolean (sourcetypeid = '-7', sourcetypesize = '1'),
+        other_details:text (sourcetypeid = '12', sourcetypesize = '10')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    CONSTRAINT 'PK__PRODUCT__ADFD89A0D7229A97' PRIMARY KEY ( 'item_id' )
+    TAGS (inventory)
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_product(
+        I18N us_est
+        CONSTRAINTS (
+             ADD item_id (any) OPT ANY
+             ADD item_code (any) OPT ANY
+             ADD item_name (any) OPT ANY
+             ADD description (any) OPT ANY
+             ADD item_sub_category_id (any) OPT ANY
+             ADD unit (any) OPT ANY
+             ADD price (any) OPT ANY
+             ADD quantity (any) OPT ANY
+             ADD reorder_level (any) OPT ANY
+             ADD is_active (any) OPT ANY
+             ADD other_details (any) OPT ANY
+        )
+        OUTPUTLIST (description, is_active, item_code, item_id, item_name, item_sub_category_id, other_details, price, quantity, reorder_level, unit
+        )
+        WRAPPER (jdbc bv_product)
+    );
+

@@ -1,0 +1,36 @@
+﻿CREATE OR REPLACE WRAPPER MONGODB vdplogs
+    DATASOURCENAME=sample_mogodb
+    DATABASE = 'denodovdplog'
+    COLLECTION = 'vdplogs'
+    LIMITDOCUMENTS = 150
+    OUTPUTSCHEMA (
+        _id = '_id' : 'java.lang.String' SORTABLE NOT UPDATEABLE,
+        timestamp = 'timestamp' : 'java.util.Date' SORTABLE,
+        log_level = 'log_level' : 'java.lang.String' SORTABLE,
+        message = 'message' : 'java.lang.String' SORTABLE,
+        details = 'details' : 'java.lang.String' SORTABLE
+    );
+
+CREATE OR REPLACE TABLE vdplogs I18N us_est (
+        _id:text,
+        timestamp:date,
+        log_level:text,
+        message:text,
+        details:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD vdplogs(
+        I18N us_est
+        CONSTRAINTS (
+             ADD _id NOS ZERO ()
+             ADD timestamp NOS ZERO ()
+             ADD log_level NOS ZERO ()
+             ADD message NOS ZERO ()
+             ADD details NOS ZERO ()
+        )
+        OUTPUTLIST (_id, details, log_level, message, timestamp
+        )
+        WRAPPER (mongodb vdplogs)
+    );
+

@@ -1,3 +1,8 @@
 ﻿1/databases/test_db/folder.2-integration/2-integration.vql
 */databases/test_db/folder.2-integration/2-integration.vql
+*/databases/test_db/folder.1 - dataconnection/1 - dataconnection.vql
+*/databases/test_db/folder.1 - dataconnection/folder.1 - data sources/1 - data sources.vql
+*/databases/test_db/folder.1 - dataconnection/folder.1 - data sources/datasources/jdbc/ds_sql_resort360db_copy.vql
+*/databases/test_db/folder.1 - dataconnection/folder.1 - data sources/views/bv_booking_typebooking_type.vql
 1/databases/test_db/folder.2-integration/views/p_bv_booking_type.vql
+*/databases/test_db/folder.2-integration/views/p_bv_booking_type.vql

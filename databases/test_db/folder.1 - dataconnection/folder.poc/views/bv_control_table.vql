@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE VIEW bv_control_table FOLDER = '/1 - dataconnection/poc' AS  
+﻿CREATE OR REPLACE VIEW bv_control_table FOLDER = '/1 - dataconnection/poc' AS   
     SELECT 1 AS id,
            'dev-denodo-9.iqzsystems.io' AS d_environment,
            'dbo.' AS d_schema,
