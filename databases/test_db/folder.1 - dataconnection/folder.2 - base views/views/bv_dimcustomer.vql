@@ -43,8 +43,8 @@ CREATE OR REPLACE WRAPPER JDBC "bv_DimCustomer"
     INDEX 'IX_DimCustomer_CustomerLabel' OTHER UNIQUE ( 'CustomerLabel' );
 
 CREATE OR REPLACE TABLE "bv_DimCustomer" I18N us_est (
-        "CustomerKey":int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
-        "GeographyKey":int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        "CustomerKey":int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Customer key'),
+        "GeographyKey":int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'key'),
         "CustomerLabel":text (notnull, sourcetypeid = '-9', sourcetypesize = '100'),
         "Title":text (sourcetypeid = '-9', sourcetypesize = '8'),
         "FirstName":text (sourcetypeid = '-9', sourcetypesize = '50'),
