@@ -63,10 +63,10 @@ CREATE OR REPLACE TABLE bv_vdp_queries I18N us_est (
         "CpuTime":long,
         "CpuUsageAvg":float,
         "CpuUsageMax":float,
-        "CpuUsageMaxTime":timestamp,
-        "CpuUsageStdDev":double,
-        "EStmatedQueryCost":text,
-        "GlobalSecurityPoliciesApplied":text
+        "CpuUsageMaxTime":timestamp (description = 'cpu'),
+        "CpuUsageStdDev":double (description = 'cpu'),
+        "EStmatedQueryCost":text (description = 'cost'),
+        "GlobalSecurityPoliciesApplied":text (description = 'Globalsecuritypolicies')
     )
     FOLDER = '/1-dataconnection/2-base view'
     CACHE OFF

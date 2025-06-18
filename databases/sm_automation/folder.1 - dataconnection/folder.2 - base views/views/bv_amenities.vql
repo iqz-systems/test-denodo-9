@@ -13,7 +13,7 @@ CREATE OR REPLACE WRAPPER JDBC bv_amenities
     );
 
 CREATE OR REPLACE TABLE bv_amenities I18N us_est (
-        resort_id:text (sourcetypeid = '12', sourcetypesize = '50'),
+        resort_id:text (sourcetypeid = '12', sourcetypesize = '50', description = 'resort_id'),
         amenities_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
         amenities_name:text (sourcetypeid = '12', sourcetypesize = '12'),
         rate:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19')
