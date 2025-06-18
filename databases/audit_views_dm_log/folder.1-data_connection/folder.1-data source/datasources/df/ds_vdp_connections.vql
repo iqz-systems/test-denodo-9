@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_vdp_connections
+    FOLDER = '/1-data_connection/1-data source'
+    ROUTE LOCAL 'LocalConnection' '${databases.audit_views_dm_log.folder.1-data_connection.folder.1-data source.datasources.df.ds_vdp_connections.ROUTE.LOCAL.PATH}' FILENAMEPATTERN = 'vdp-connections.log(.*)'
+    COLUMNDELIMITER = '\t'
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = FALSE;
+
