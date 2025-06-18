@@ -63,9 +63,9 @@ CREATE OR REPLACE TABLE bv_vdp_queries I18N us_est (
         "CpuTime":long,
         "CpuUsageAvg":float,
         "CpuUsageMax":float,
-        "CpuUsageMaxTime":timestamp (description = 'cpu'),
-        "CpuUsageStdDev":double (description = 'cpu'),
-        "EStmatedQueryCost":text (description = 'cost'),
+        "CpuUsageMaxTime":timestamp,
+        "CpuUsageStdDev":double,
+        "EStmatedQueryCost":text,
         "GlobalSecurityPoliciesApplied":text (description = 'Globalsecuritypolicies')
     )
     FOLDER = '/1-dataconnection/2-base view'
