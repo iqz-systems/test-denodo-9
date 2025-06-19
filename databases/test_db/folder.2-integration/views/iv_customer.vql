@@ -1,6 +1,12 @@
 ﻿CREATE OR REPLACE VIEW "iv_Customer" FOLDER = '/2-integration' (
     "CustomerKey" (description = 'Customer Key'),
-    "GeographyKey" (description = 'Geography')
+    "GeographyKey" (description = 'Geography'),
+    "CustomerLabel" (description = 'Description label for the customer.'),
+    "Title" (description = 'Title of the customer (e.g., Mr., Ms., Dr.).'),
+    "FirstName" (description = 'First name of the customer.'),
+    "MiddleName" (description = 'Middle name of the customer.'),
+    "MaritalStatus" (description = 'Marital status of the customer (e.g., single, married).'),
+    "DateFirstPurchase" (description = 'Date of the customer''s first purchase.')
  )
  AS SELECT "bv_DimCustomer"."CustomerKey" AS "CustomerKey", "bv_DimCustomer"."GeographyKey" AS "GeographyKey", "bv_DimCustomer"."CustomerLabel" AS "CustomerLabel", "bv_DimCustomer"."Title" AS "Title", "bv_DimCustomer"."FirstName" AS "FirstName", "bv_DimCustomer"."MiddleName" AS "MiddleName", "bv_DimCustomer"."LastName" AS "LastName", "bv_DimCustomer"."NameStyle" AS "NameStyle", "bv_DimCustomer"."BirthDate" AS "BirthDate", "bv_DimCustomer"."MaritalStatus" AS "MaritalStatus", "bv_DimCustomer"."Suffix" AS "Suffix", "bv_DimCustomer"."Gender" AS "Gender", "bv_DimCustomer"."EmailAddress" AS "EmailAddress", "bv_DimCustomer"."YearlyIncome" AS "YearlyIncome", "bv_DimCustomer"."TotalChildren" AS "TotalChildren", "bv_DimCustomer"."NumberChildrenAtHome" AS "NumberChildrenAtHome", "bv_DimCustomer"."Education" AS "Education", "bv_DimCustomer"."Occupation" AS "Occupation", "bv_DimCustomer"."HouseOwnerFlag" AS "HouseOwnerFlag", "bv_DimCustomer"."NumberCarsOwned" AS "NumberCarsOwned", "bv_DimCustomer"."AddressLine1" AS "AddressLine1", "bv_DimCustomer"."AddressLine2" AS "AddressLine2", "bv_DimCustomer"."Phone" AS "Phone", "bv_DimCustomer"."DateFirstPurchase" AS "DateFirstPurchase", "bv_DimCustomer"."CustomerType" AS "CustomerType", "bv_DimCustomer"."CompanyName" AS "CompanyName", "bv_DimCustomer"."ETLLoadID" AS "ETLLoadID", "bv_DimCustomer"."LoadDate" AS "LoadDate", "bv_DimCustomer"."UpdateDate" AS "UpdateDate" FROM "bv_DimCustomer";
 
