@@ -22,7 +22,7 @@ CREATE OR REPLACE TABLE bv_date I18N us_est (
         "Month":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
         "MonthName":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20'),
         "Day":int (notnull, sourcetypeid = '4', sourcetypedecimals = '0', sourcetypesize = '10'),
-        "WeekdayName":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20', description = 'xxx'),
+        "WeekdayName":text (notnull, sourcetypeid = '-9', sourcetypedecimals = '0', sourcetypesize = '20', description = 'Weekday'),
         "IsWeekend":boolean (notnull, sourcetypeid = '-7', sourcetypedecimals = '0', sourcetypesize = '1', description = 'isweekend')
     )
     FOLDER = '/1 - dataconnection/2 - base views'
